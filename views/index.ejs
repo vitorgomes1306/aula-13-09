@@ -109,18 +109,31 @@
                 <!-- Conteúdo do modal aqui. -->
                 <!-- Formulário de cadastro de alunos -->
                 <h3>Listagem de alunos</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Idade</th>
-                            <th scope="col">Curso</th>
-                        </tr>
-                    </thead>
-                    <tbody id="corpo-tabela-alunos">
-                        <!-- Linhas da tabela serão adicionadas aqui dinamicamente -->
-                    </tbody>
+                <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Idade</th>
+                    <th>Curso</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% alunos.forEach(function(listaAluno) { %>
+                    <tr>
+                        <td><%= listaAluno.id %></td>
+                        <td><%= listaAluno.nome %></td>
+                        <td><%= listaAluno.idade %></td>
+                        <td><%= listaAluno.curso %></td>
+                        <td>
+                            <button class="btn btn-danger btn-sm" onclick="excluirAluno(<%= listaAluno.id %>)">Excluir</button>
+                            <button class="btn btn-warning btn-sm" onclick="editarAluno(<%= listaAluno.id %>)">Editar</button>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -128,6 +141,7 @@
         </div>
     </div>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>

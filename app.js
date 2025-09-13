@@ -43,9 +43,9 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
     //busca oa alunos no banco de dados
     const query = 'SELECT * FROM alunos';
-    connection.query(query, (err, rows) => {
+    connection.query(query, (err, alunos) => {
         if (err) throw err;
-        res.render('index', { alunos: rows });
+        res.render('index', { alunos });
     });
 });
 
