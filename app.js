@@ -5,12 +5,19 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const peth = require('path');
 
 //inciciando o express
 const app = express();
 
 // definindo a porta
-const port = 3000;
+const port = 1313;
+
+//rota inicial GET
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/index.html');
+});
 
 // Configuração do body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -53,6 +60,6 @@ app.set('views', './views');
 //     });
 // });
 
-// app.listen(port, () => {
-//     console.log(`Servidor rodando em http://localhost:${port}`);
-// });
+app.listen(port, () => {
+     console.log(`Servidor rodando em http://localhost:${port}`);
+});
