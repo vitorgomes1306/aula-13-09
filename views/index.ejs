@@ -26,7 +26,8 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                       <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#meuModal">Cadastrar alunos</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cadastroAluno">Cadastrar
+                            alunos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#listagem">Listar alunos</a>
@@ -64,30 +65,41 @@
 </div>
 
 <!-- Estrutura do Modal -->
-<div class="modal fade" id="meuModal" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
+<div class="modal fade" id="cadastroAluno" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="meuModalLabel">Título do Modal</h5>
+                <i class="bi bi-person-fill-add fs-3"></i>
+                <h5 class="modal-title" id="meuModalLabel">Cadastro de alunos</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
             </div>
             <div class="modal-body">
                 <!-- Conteúdo do modal aqui. -->
-                <!-- Formulário de cadastro de alunos -->
+
                 <form id="form-cadastro-aluno">
                     <div class="mb-3">
-                        <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" id="nome" name="nome" required>
+
+                        <input type="text" class="form-control" id="nome" name="nome" required
+                            placeholder="Nome do aluno">
                     </div>
                     <div class="mb-3">
-                        <label for="idade" class="form-label">Idade:</label>
-                        <input type="number" class="form-control" id="idade" name="idade" required>
+
+                        <input type="number" class="form-control" id="idade" name="idade" required
+                            placeholder="Idade do aluno">
                     </div>
                     <div class="mb-3">
-                        <label for="curso" class="form-label">Curso:</label>
-                        <input type="text" class="form-control" id="curso" name="curso" required>
+
+                        <input type="text" class="form-control" id="curso" name="curso" required
+                            placeholder="Curso do aluno">
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto" class="form-label">Foto do Aluno:</label>
+                        <input type="file" class="form-control" id="curso" name="curso" required
+                            placeholder="Foto fo aluno">
                     </div>
                     <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+                <!-- Final do Conteúdo do modal aqui. -->
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -110,30 +122,40 @@
                 <!-- Formulário de cadastro de alunos -->
                 <h3>Listagem de alunos</h3>
                 <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nome</th>
-                    <th>Idade</th>
-                    <th>Curso</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% alunos.forEach(function(listaAluno) { %>
-                    <tr>
-                        <td><%= listaAluno.id %></td>
-                        <td><%= listaAluno.nome %></td>
-                        <td><%= listaAluno.idade %></td>
-                        <td><%= listaAluno.curso %></td>
-                        <td>
-                            <button class="btn btn-danger btn-sm" onclick="excluirAluno(<%= listaAluno.id %>)">Excluir</button>
-                            <button class="btn btn-warning btn-sm" onclick="editarAluno(<%= listaAluno.id %>)">Editar</button>
-                        </td>
-                    </tr>
-                <% }); %>
-            </tbody>
-        </table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Idade</th>
+                            <th>Curso</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% alunos.forEach(function(listaAluno) { %>
+                            <tr>
+                                <td>
+                                    <%= listaAluno.id %>
+                                </td>
+                                <td>
+                                    <%= listaAluno.nome %>
+                                </td>
+                                <td>
+                                    <%= listaAluno.idade %>
+                                </td>
+                                <td>
+                                    <%= listaAluno.curso %>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn-sm"
+                                        onclick="excluirAluno(<%= listaAluno.id %>)">Excluir</button>
+                                    <button class="btn btn-warning btn-sm"
+                                        onclick="editarAluno(<%= listaAluno.id %>)">Editar</button>
+                                </td>
+                            </tr>
+                            <% }); %>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
