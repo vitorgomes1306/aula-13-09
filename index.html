@@ -26,10 +26,10 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar aluno</a>
+                       <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#meuModal">Cadastrar alunos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Listar alunos</a>
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#listagem">Listar alunos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link disabled" aria-disabled="true">Sair</a>
@@ -44,7 +44,7 @@
             <div class="card-header bg-primary text-white">
                 <!-- Icone bootstrap de alunos -->
 
-                <i class="bi bi-person-fill fs-2"></i>
+                <i class="file-earmark-person-fill"></i>
                 <h3 class="card-title d-inline-block ms-2">Sistema para cadastro de alunos</h3>
             </div>
         </div>
@@ -52,13 +52,79 @@
 </body>
 <!-- Card para mostrar a quantidade de alunos cadastrados -->
 <div class="container mt-5">
-    <div class="card">
+    <div class="card w-50 mx-auto">
         <div class="card-header bg-success text-white">
             <i class="bi bi-person-fill fs-2"></i>
             <h3 class="card-title d-inline-block ms-2">Alunos Cadastrados</h3>
         </div>
         <div class="card-body">
             <p class="card-text">Total de alunos cadastrados: <span id="total-alunos">0</span></p>
+        </div>
+    </div>
+</div>
+
+<!-- Estrutura do Modal -->
+<div class="modal fade" id="meuModal" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="meuModalLabel">Título do Modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do modal aqui. -->
+                <!-- Formulário de cadastro de alunos -->
+                <form id="form-cadastro-aluno">
+                    <div class="mb-3">
+                        <label for="nome" class="form-label">Nome:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="idade" class="form-label">Idade:</label>
+                        <input type="number" class="form-control" id="idade" name="idade" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="curso" class="form-label">Curso:</label>
+                        <input type="text" class="form-control" id="curso" name="curso" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal de listagem -->
+
+<div class="modal fade" id="listagem" tabindex="-1" aria-labelledby="meuModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="meuModalLabel">Título do Modal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Conteúdo do modal aqui. -->
+                <!-- Formulário de cadastro de alunos -->
+                <h3>Listagem de alunos</h3>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Idade</th>
+                            <th scope="col">Curso</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpo-tabela-alunos">
+                        <!-- Linhas da tabela serão adicionadas aqui dinamicamente -->
+                    </tbody>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
         </div>
     </div>
 </div>
