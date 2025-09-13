@@ -14,10 +14,55 @@ const app = express();
 const port = 1313;
 
 //rota inicial GET
+// app.get('/', (req, res) => {
+//     res.sendFile(__dirname + '/index.html');
+// });
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/index.html');
+//configurando mysql
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'escola'
 });
+
+// conectar ao banco de dados
+connection.connect((err) => {
+    if (err) throw err
+    console.error('Conectado ao banco de dados MySQL!');
+
+});
+
+//configurar o EJS
+app.set ('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(__dirname + '/public'));
+
+
+//rota inicial
+app.get('/', (req, res) => {
+    //busca oa alunos no banco de dados
+    const query = 'SELECT * FROM alunos';
+    connection.query(query, (err, rows) => {
+        if (err) throw err;
+        res.render('index', { alunos: rows });
+    });
+});
+
+//rota para adicionar aluno
+app.post('/add', (req, res) => {
+    const { nome, idade, curso } = req.body;
+    const query = 'INSERT INTO alunos (nome, idade, curso) VALUES (?, ?, ?)';
+    connection.query(query, [nome, idade, curso], (err, result) => {
+        if (err) throw err;
+        res.redirect('/');
+    });
+});
+
+
+
+
+
 
 // Configuração do body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
